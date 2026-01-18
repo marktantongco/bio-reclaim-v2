@@ -86,7 +86,6 @@ export default function ToolsPage() {
               description="Create personalized daily recovery protocols."
               icon={Calendar}
               color="indigo"
-              isComingSoon
             />
             <ToolCard
               id="social-shield"
@@ -94,7 +93,6 @@ export default function ToolsPage() {
               description="Practice refusal scripts for social situations."
               icon={Shield}
               color="emerald"
-              isComingSoon
             />
             <ToolCard
               id="sleep-repair"
@@ -102,7 +100,6 @@ export default function ToolsPage() {
               description="Science-backed circadian reset protocols."
               icon={Moon}
               color="violet"
-              isComingSoon
             />
             <ToolCard
               id="trigger-detective"
