@@ -39,6 +39,44 @@ export async function callGemini(
 }
 
 /**
+ * Call Gemini Flash 1.5 model with optional generation config.
+ * @param promptText - Prompt to send.
+ * @param options - Optional config: temperature, maxOutputTokens, isJson.
+ * @returns Generated text response.
+ */
+export async function callGeminiFlash(
+  promptText: string,
+  options?: {
+    temperature?: number;
+    maxOutputTokens?: number;
+    isJson?: boolean;
+  }
+): Promise<string | null> {
+  if (!apiKey) {
+    throw new Error('Gemini API key not configured');
+  }
+
+  try {
+    const { temperature, maxOutputTokens, isJson } = options || {};
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-1.5-flash',
+      generationConfig: {
+        temperature,
+        maxOutputTokens,
+        ...(isJson ? { responseMimeType: 'application/json' } : {})
+      }
+    });
+
+    const result = await model.generateContent(promptText);
+    const response = await result.response;
+    return response.text();
+  } catch (error) {
+    console.error('Gemini Flash API error:', error);
+    return null;
+  }
+}
+
+/**
  * Note: For Text-to-Speech (TTS), we usage the browser's native Window.speechSynthesis
  * API in the React components. This is free, unlimited, and requires no API key.
  *

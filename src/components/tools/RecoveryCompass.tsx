@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Send, RefreshCw, Loader2 } from 'lucide-react';
-import { callGemini } from '@/lib/gemini';
+import { callGeminiFlash } from '@/lib/gemini';
 import { marked } from 'marked';
 
 interface Message {
@@ -61,7 +61,7 @@ export function RecoveryCompass() {
       ${messages.slice(-3).map(m => `${m.role}: ${m.content}`).join('\n')}
       User: ${userInput}`;
 
-      const responseText = await callGemini(context);
+      const responseText = await callGeminiFlash(context);
 
       if (responseText) {
         const aiMsg: Message = {

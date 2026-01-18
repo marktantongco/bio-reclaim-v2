@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Anchor, RefreshCw, Loader2 } from 'lucide-react';
-import { callGemini } from '@/lib/gemini';
+import { callGeminiFlash } from '@/lib/gemini';
 
 export function TheAnchor() {
   const [exercise, setExercise] = useState<string>('');
@@ -20,7 +20,7 @@ export function TheAnchor() {
       Keep it under 100 words.
       Tone: Soothing, direct, simple.`;
 
-      const response = await callGemini(prompt);
+      const response = await callGeminiFlash(prompt);
       if (response) {
         setExercise(response);
       }
