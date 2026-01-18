@@ -107,7 +107,6 @@ export default function ToolsPage() {
               description="Analyze H.A.L.T. triggers deeply."
               icon={Search}
               color="rose"
-              isComingSoon
             />
           </div>
         </div>
