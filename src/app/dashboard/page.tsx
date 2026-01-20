@@ -1,4 +1,4 @@
-import { PhilippineAnalyticsDashboard } from '@/components/PhilippineAnalyticsDashboard';
+import PhilippineAnalyticsDashboard from '@/components/PhilippineAnalyticsDashboard';
 
 export const metadata = {
   title: 'Dashboard - Bio-Reclaim',
