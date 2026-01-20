@@ -1,9 +1,7 @@
-'use server';
-
 // Gemini API integration utilities
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const apiKey = process.env.GEMINI_API_KEY || '';
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
 
 if (!apiKey) {
   console.warn('GEMINI_API_KEY not set. AI features will not work.');
