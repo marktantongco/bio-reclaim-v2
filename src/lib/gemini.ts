@@ -1,3 +1,5 @@
+'use server';
+
 // Gemini API integration utilities
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
