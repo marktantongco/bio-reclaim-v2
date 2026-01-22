@@ -71,10 +71,51 @@ export async function callGeminiFlash(
     const response = await result.response;
     return response.text();
   } catch (error) {
-    console.error('Gemini Flash API error:', error);
+    console.warn('Primary Gemini SDK call failed, falling back to fetch:', error);
+    // Fallback to direct REST call
+    return callGeminiFlashClient(promptText, options);
+  }
+}
+
+/**
+ * Fallback client-side fetch implementation for Gemini Flash.
+ */
+async function callGeminiFlashClient(
+  promptText: string,
+  options?: {
+    temperature?: number;
+    maxOutputTokens?: number;
+    isJson?: boolean;
+  }
+): Promise<string | null> {
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  const body = {
+    contents: [{ role: 'user', parts: [{ text: promptText }] }],
+    generationConfig: {
+      temperature: options?.temperature ?? 0.7,
+      maxOutputTokens: options?.maxOutputTokens ?? 1024,
+      ...(options?.isJson ? { responseMimeType: 'application/json' } : {})
+    }
+  };
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+      console.error('Gemini fetch error:', res.status, await res.text());
+      return null;
+    }
+    const data = await res.json();
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? null;
+    return text;
+  } catch (e) {
+    console.error('Gemini fetch exception:', e);
     return null;
   }
 }
+
 
 /**
  * Note: For Text-to-Speech (TTS), we usage the browser's native Window.speechSynthesis
