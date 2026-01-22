@@ -34,7 +34,7 @@ export default function HomePage() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
-                href="/dashboard"
+                href="/tools"
                 className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105"
               >
                 Start Tracking Free
@@ -169,7 +169,7 @@ export default function HomePage() {
             Join thousands tracking their progress with Bio-Reclaim. Completely free, forever.
           </p>
           <Link
-            href="/dashboard"
+            href="/tools"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105"
           >
             Get Started Now
